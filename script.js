@@ -23,11 +23,12 @@ var creationTableau = function(js, iddiv){
 			var hrow = document.createElement("tr")
 			var unecaze = document.createElement("th")
 				unecaze.setAttribute("colspan",1)
+				unecaze.setAttribute("class","first")
 
 				hrow.appendChild(unecaze)
 			js.forEach(function(elt2){
 				var caze = document.createElement("th")
-				var jou = document.createTextNode(elt2);
+				var jou = document.createTextNode(elt2[1]);
 				caze.setAttribute("colspan",2)
 				caze.appendChild(jou)
 
@@ -36,7 +37,7 @@ var creationTableau = function(js, iddiv){
 
 			var endcaze = document.createElement("th")
 			endcaze.setAttribute("colspan",1)
-			var text = document.createTextNode('Totale');
+			var text = document.createTextNode('PTS');
 			endcaze.appendChild(text)
 			hrow.appendChild(endcaze)
 
@@ -51,9 +52,10 @@ var creationTableau = function(js, iddiv){
 		js.forEach(function(elt,i){
 			var row = document.createElement("tr")
 			var caze = document.createElement("td")
-			var jou = document.createTextNode(elt);
+			var jou = document.createTextNode(elt[0]+" - "+elt[1]);
 			caze.appendChild(jou);
 			row.appendChild(caze);
+			caze.setAttribute("class","first")
 
 			js.forEach(function(elt2,j){
 				var caze1 = document.createElement("td")
@@ -62,9 +64,9 @@ var creationTableau = function(js, iddiv){
 				caze2.setAttribute("class","caze")//donne une class pour le css
 				if(elt!==elt2){
 					var input1 = document.createElement("input")
-					input1.setAttribute("name",elt+","+elt2+"s1")
+					input1.setAttribute("name",elt[0]+","+elt2[0]+"s1")
 					var input2 = document.createElement("input")
-					input2.setAttribute("name",elt+","+elt2+"s2")
+					input2.setAttribute("name",elt[0]+","+elt2[0]+"s2")
 					caze1.appendChild(input1)
 					caze2.appendChild(input2)
 				}
@@ -164,7 +166,7 @@ var putData = function(data, iddiv){
 // fonction lancée au clique sur le bouton get
 var get = function(){
 	//get les données dans le tableau de la div id = reponse
-	var score = getData('reponse')
+	var score = getData('tableau')
 	//recupere l'élément dans lequel on affiche les datas
 	var restit = document.getElementById('restit')
 
@@ -178,7 +180,7 @@ var put = function(){
 	//On recupere les datas à inserer
 	//Converti la string en tableau en fonction des separateurs /
 	var data =	document.getElementById('put').value.split("/")
-	putData(data,'reponse')
+	putData(data,'tableau')
 }
 
 
@@ -186,23 +188,23 @@ var put = function(){
 var refrech = function(){
 	//on Recupere la liste des joueurs
 	//Converti la string en tableau en fonction des separateurs /
-	var js = document.getElementById("joueurs").value.split("/");
+	var js = document.getElementById("joueurs").value.split("/").map(function(name, id){ return [name,((id+1)+"").length>1?((id+1)+""):("0"+(id+1))]});
 	//On lance la creation du tableau
- 	creationTableau(js,'reponse');
+ 	creationTableau(js,'tableau');
 }
 
 var getTotal = function(){
 
 	//Converti la string en tableau en fonction des separateurs /
-	var js = document.getElementById("joueurs").value.split("/");
+	var js = document.getElementById("joueurs").value.split("/").map(function(name,id){ return [name,id+1]});
 
-	var elt = document.getElementById('reponse')//on cible l'endroit ou on travail
+	var elt = document.getElementById('tableau')//on cible l'endroit ou on travail
  	//On met dans un tableau tous les inputs de la div ciblée
  	var inps = Array.prototype.slice.call( elt.getElementsByTagName('input'))
  	//On fait les comptes
  	var total = js.map(function(jou){ 
 		return inps.reduce(function(total,inp){
-			return jou === inp.name.split(",")[0]?total+(inp.value*1):total
+			return jou[0] === inp.name.split(",")[0]?total+(inp.value*1):total
 		},0)
  	})
 

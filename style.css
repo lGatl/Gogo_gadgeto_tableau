@@ -10,19 +10,26 @@ font-family:  sans-serif;
 
 .fortab {
 	margin: 10px;
-	height: 400px;
-	width: 800px;
-	display:flex;
+	
+	display:block;
 	flex-direction: column;
 }
 .fortab table {
 	border-collapse: collapse;
 	height:100%;
 }
-.fortab td, th {
+ .first{
+ 		width: 69px;
+ 		border: solid thin;
+	box-sizing: border-box;
+ }
+
+.fortab .caze, th {
 	border: solid thin;
 	box-sizing: border-box;
 
+	height: 27px;
+	width: 25px;
 }
 .fortab table, tbody {
 	
