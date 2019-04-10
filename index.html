@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+
+    		<link rel="stylesheet" type="text/css" href="style.css">
+	<title>Gogo gadgéto tableau</title>
+</head>
+<body>
+	<div>
+			Format: nomjoueur1/nomjoueur2/ .... <br>
+			liste joueurs: <input def type="text" id="joueurs" value="j1/j2/j3"><button type = "button" onclick="refrech()">Generate</button>
+	</div>
+
+	<div class="fortab" id="reponse">
+
+	</div>
+<br>
+Format: nomjoueur1,nomjoueur2,score1,score2/ ...
+<br>
+<button type = "button" onclick="get()">Get</button><label id='restit'></label><br>
+<button type = "button" onclick="put()">Put</button><input def type="text" id="put" value="j1,j2,1,/j1,j3,1,0/j2,j1,1,0">
+Ca va bugguer si dans ces données se trouve des joueurs <br>	
+ qui ne se trouvent pas dans la liste des joueurs ou <br>
+ si le format n'est pas respecté <br>
+<br>
+<button type = "button" onclick="getTotal()">Total</button> <br><br>
+	
+Si ca te vas, je referai une psse pour prevenir les erreurs
+<script type="text/javascript" src="script.js"></script>
+</body>
+</html>

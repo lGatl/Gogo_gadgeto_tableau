@@ -1,0 +1,42 @@
+html, body {
+height: 100%;
+width: 100%;
+margin:0;
+padding:0;
+
+flex-direction: column;
+font-family:  sans-serif;
+}
+
+.fortab {
+	margin: 10px;
+	height: 400px;
+	width: 800px;
+	display:flex;
+	flex-direction: column;
+}
+.fortab table {
+	border-collapse: collapse;
+	height:100%;
+}
+.fortab td, th {
+	border: solid thin;
+	box-sizing: border-box;
+
+}
+.fortab table, tbody {
+	
+}
+.fortab tr {
+	
+}
+.fortab input {
+	box-sizing: border-box;
+	width:100%;
+	height:100%;
+}
+ .caze {
+ 	
+	background-color: rgb(240,240,240);
+
+}
